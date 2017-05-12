@@ -7,7 +7,7 @@ import { EventsAppComponent } from './app.component';
 import { NavigationComponent } from "./nav/navigation/navigation.component";
 import { ToastrService } from "./common/toastr.service";
 import { AppRoutes } from "./app.routing";
-import {Error404Component} from './errors/404.component'
+import {Error404Component} from './errors/404.component';
 
 import { 
     EventListComponent,
@@ -19,7 +19,7 @@ import {
     EventsListResolverService,
 
 } from './events/'
-import '../../node_modules/jquery/dist/jquery.min.js'
+import '../../node_modules/jquery/dist/jquery.min.js';
 
 @NgModule({
     imports: [ 

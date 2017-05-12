@@ -15,7 +15,16 @@ export class AuthService {
         };
     }
 
+    public getCurrentUser(): IUser {
+        return this.currentUser;
+    }
+
     public isAuthenticated() {
         return !!this.currentUser;
+    }
+
+    public setCurrentUser(firstName: string, lastName: string) {
+        this.currentUser.firstName = firstName;
+        this.currentUser.lastName = lastName;
     }
 }
