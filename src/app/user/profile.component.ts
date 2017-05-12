@@ -38,21 +38,31 @@ import { Component } from '@angular/core';
 export class ProfileComponent implements OnInit {
   public profileForm: FormGroup;
   public currentUser: IUser;
+  public firstName: FormControl;
+  public lastName: FormControl;
 
   constructor(private authService: AuthService, private router: Router) {}
 
   public ngOnInit() {
     this.currentUser = this.authService.getCurrentUser();
-    let firstName = new FormControl(this.currentUser.firstName, Validators.required);
-    let lastName = new FormControl(this.currentUser.lastName, Validators.required);
+    this.firstName = new FormControl(this.currentUser.firstName, [Validators.required, Validators.pattern('[a-zA-Z].*')]);
+    this.lastName = new FormControl(this.currentUser.lastName, [Validators.required, Validators.pattern('[a-zA-Z].*')]);
     this.profileForm = new FormGroup( {
-      firstName,
-      lastName
+      firstName: this.firstName,
+      lastName: this.lastName
     });
   }
 
   public cancelClicked() {
     this.router.navigate(['events']);
+  }
+
+  public firstNameValidated(): boolean {
+    return this.firstName.valid || this.firstName.untouched;
+  }
+
+  public lastNameValidated(): boolean {
+    return this.lastName.valid || this.lastName.untouched;
   }
 
   public saveProfile(formValues) {
